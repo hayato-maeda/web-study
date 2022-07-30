@@ -1,0 +1,1 @@
+insert into userinfo (userid,username,email) values ('user01','管理者01','hayato.minto1011@gmail.com');
