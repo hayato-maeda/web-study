@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { PrismaService } from 'src/prisma.service';
+import { PrismaService } from '../../prisma/prisma.service';
 
 @Injectable()
 export class UserInfoService {
@@ -8,5 +8,9 @@ export class UserInfoService {
 
   async findUnique(args: Prisma.userinfoFindUniqueArgs) {
     return this.prisma.userinfo.findUnique(args);
+  }
+
+  async delete(args: Prisma.userinfoDeleteArgs) {
+    return this.prisma.userinfo.delete(args);
   }
 }

@@ -1,8 +1,6 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PrismaService } from './prisma.service';
-import { UserService } from './user.service';
+import { PrismaService } from './prisma/prisma.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
@@ -14,12 +12,12 @@ import { CmModule } from './cm/cm.module';
       driver: ApolloDriver,
       debug: true,
       playground: true,
-      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
-      // sortSchema: true,
+      autoSchemaFile: join(process.cwd(), 'schema.graphql'),
+      sortSchema: true,
     }),
     CmModule,
   ],
-  controllers: [AppController],
-  providers: [AppService, UserService, PrismaService],
+  controllers: [],
+  providers: [AppService, PrismaService],
 })
 export class AppModule {}

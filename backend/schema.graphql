@@ -1,5 +1,40 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Mutation {
+  DeleteUserInfo(where: userinfoWhereUniqueInput!): userinfo!
+}
+
+type Query {
+  GetUserInfo(where: userinfoWhereUniqueInput!): userinfo!
+}
+
+type UserinfoCountAggregate {
+  _all: Int!
+  email: Int!
+  userid: Int!
+  username: Int!
+}
+
+type UserinfoMaxAggregate {
+  email: String
+  userid: String
+  username: String
+}
+
+type UserinfoMinAggregate {
+  email: String
+  userid: String
+  username: String
+}
+
 type userinfo {
+  email: String!
   userid: ID!
   username: String!
-  email: String!
+}
+
+input userinfoWhereUniqueInput {
+  userid: String
 }
