@@ -1,0 +1,36 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserinfoCountAggregate {
+  userid: Int!
+  username: Int!
+  email: Int!
+  _all: Int!
+}
+
+type UserinfoMaxAggregate {
+  userid: String
+  username: String
+  email: String
+}
+
+type UserinfoMinAggregate {
+  userid: String
+  username: String
+  email: String
+}
+
+type userinfo {
+  userid: ID!
+  username: String!
+  email: String!
+}
+
+type Query {
+  GetUserInfo(where: userinfoWhereUniqueInput!): userinfo!
+}
+
+input userinfoWhereUniqueInput {
+  userid: String
+}
