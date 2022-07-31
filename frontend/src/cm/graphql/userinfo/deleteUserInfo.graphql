@@ -1,0 +1,7 @@
+mutation deleteUserInfo($where: userinfoWhereUniqueInput!) {
+  DeleteUserInfo(where: $where) {
+    userid
+    username
+    email
+  }
+}

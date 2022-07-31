@@ -1,0 +1,23 @@
+overwrite: true
+config:
+  scalars:
+    BigInt: number
+    Byte: Byte
+    DateTime: Date
+  fetcher: graphql-request
+  exposeQueryKeys: true
+schema: "../backend/schema.graphql"
+generates:
+  src/@types/graphql.d.ts:
+    plugins:
+      - typescript
+      - add:
+          content: 'type Byte = { type: "Buffer", data: Uint8Array }'
+    config:
+      noExport: true
+      enumsAsTypes: true
+  src/cm/@generated/graphql.ts:
+    documents: "src/cm/graphql/**/*.graphql"
+    plugins:
+      - typescript-operations
+      - typescript-react-query

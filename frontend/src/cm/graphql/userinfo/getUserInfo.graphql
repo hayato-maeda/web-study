@@ -1,0 +1,7 @@
+query getUserInfo($where: userinfoWhereUniqueInput!) {
+  GetUserInfo(where: $where) {
+    userid
+    username
+    email
+  }
+}

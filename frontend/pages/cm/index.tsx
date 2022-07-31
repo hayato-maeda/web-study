@@ -2,6 +2,8 @@ import { Button, Container, Grid, Typography, TextField } from "@mui/material";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import { useGetUserInfoQuery } from "../../src/cm/@generated/graphql";
+import { GraphQLClient } from "graphql-request";
 
 type LoginForm = {
   userid: string;
@@ -24,6 +26,11 @@ const Home: NextPage = () => {
     console.log("ログイン処理");
     router.push("");
   };
+  const client = new GraphQLClient("http://localhost:3100/graphql");
+  const { data: userInfo, isFetched } = useGetUserInfoQuery(client, {
+    where: { userid: "user01" },
+  });
+  console.log("確認", userInfo?.GetUserInfo);
 
   return (
     <Container
