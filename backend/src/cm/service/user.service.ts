@@ -10,6 +10,10 @@ export class UserInfoService {
     return this.prisma.userinfo.findUnique(args);
   }
 
+  async update(args: Prisma.userinfoUpdateArgs) {
+    return this.prisma.userinfo.update(args);
+  }
+
   async delete(args: Prisma.userinfoDeleteArgs) {
     return this.prisma.userinfo.delete(args);
   }

@@ -2,6 +2,7 @@ import { Field } from '@nestjs/graphql';
 import { ObjectType } from '@nestjs/graphql';
 import { Int } from '@nestjs/graphql';
 import { InputType } from '@nestjs/graphql';
+import { Float } from '@nestjs/graphql';
 import { registerEnumType } from '@nestjs/graphql';
 import { ArgsType } from '@nestjs/graphql';
 import { Type } from 'class-transformer';
@@ -11,6 +12,7 @@ export enum UserinfoScalarFieldEnum {
   userid = 'userid',
   username = 'username',
   email = 'email',
+  ipaddress = 'ipaddress',
 }
 
 export enum SortOrder {
@@ -40,10 +42,84 @@ export class AffectedRows {
 export class AggregateUserinfo {
   @Field(() => UserinfoCountAggregate, { nullable: true })
   _count?: InstanceType<typeof UserinfoCountAggregate>;
+  @Field(() => UserinfoAvgAggregate, { nullable: true })
+  _avg?: InstanceType<typeof UserinfoAvgAggregate>;
+  @Field(() => UserinfoSumAggregate, { nullable: true })
+  _sum?: InstanceType<typeof UserinfoSumAggregate>;
   @Field(() => UserinfoMinAggregate, { nullable: true })
   _min?: InstanceType<typeof UserinfoMinAggregate>;
   @Field(() => UserinfoMaxAggregate, { nullable: true })
   _max?: InstanceType<typeof UserinfoMaxAggregate>;
+}
+
+@InputType()
+export class IntNullableFilter {
+  @Field(() => Int, { nullable: true })
+  equals?: number;
+  @Field(() => [Int], { nullable: true })
+  in?: Array<number>;
+  @Field(() => [Int], { nullable: true })
+  notIn?: Array<number>;
+  @Field(() => Int, { nullable: true })
+  lt?: number;
+  @Field(() => Int, { nullable: true })
+  lte?: number;
+  @Field(() => Int, { nullable: true })
+  gt?: number;
+  @Field(() => Int, { nullable: true })
+  gte?: number;
+  @Field(() => NestedIntNullableFilter, { nullable: true })
+  not?: InstanceType<typeof NestedIntNullableFilter>;
+}
+
+@InputType()
+export class IntNullableWithAggregatesFilter {
+  @Field(() => Int, { nullable: true })
+  equals?: number;
+  @Field(() => [Int], { nullable: true })
+  in?: Array<number>;
+  @Field(() => [Int], { nullable: true })
+  notIn?: Array<number>;
+  @Field(() => Int, { nullable: true })
+  lt?: number;
+  @Field(() => Int, { nullable: true })
+  lte?: number;
+  @Field(() => Int, { nullable: true })
+  gt?: number;
+  @Field(() => Int, { nullable: true })
+  gte?: number;
+  @Field(() => NestedIntNullableWithAggregatesFilter, { nullable: true })
+  not?: InstanceType<typeof NestedIntNullableWithAggregatesFilter>;
+  @Field(() => NestedIntNullableFilter, { nullable: true })
+  _count?: InstanceType<typeof NestedIntNullableFilter>;
+  @Field(() => NestedFloatNullableFilter, { nullable: true })
+  _avg?: InstanceType<typeof NestedFloatNullableFilter>;
+  @Field(() => NestedIntNullableFilter, { nullable: true })
+  _sum?: InstanceType<typeof NestedIntNullableFilter>;
+  @Field(() => NestedIntNullableFilter, { nullable: true })
+  _min?: InstanceType<typeof NestedIntNullableFilter>;
+  @Field(() => NestedIntNullableFilter, { nullable: true })
+  _max?: InstanceType<typeof NestedIntNullableFilter>;
+}
+
+@InputType()
+export class NestedFloatNullableFilter {
+  @Field(() => Float, { nullable: true })
+  equals?: number;
+  @Field(() => [Float], { nullable: true })
+  in?: Array<number>;
+  @Field(() => [Float], { nullable: true })
+  notIn?: Array<number>;
+  @Field(() => Float, { nullable: true })
+  lt?: number;
+  @Field(() => Float, { nullable: true })
+  lte?: number;
+  @Field(() => Float, { nullable: true })
+  gt?: number;
+  @Field(() => Float, { nullable: true })
+  gte?: number;
+  @Field(() => NestedFloatNullableFilter, { nullable: true })
+  not?: InstanceType<typeof NestedFloatNullableFilter>;
 }
 
 @InputType()
@@ -64,6 +140,56 @@ export class NestedIntFilter {
   gte?: number;
   @Field(() => NestedIntFilter, { nullable: true })
   not?: InstanceType<typeof NestedIntFilter>;
+}
+
+@InputType()
+export class NestedIntNullableFilter {
+  @Field(() => Int, { nullable: true })
+  equals?: number;
+  @Field(() => [Int], { nullable: true })
+  in?: Array<number>;
+  @Field(() => [Int], { nullable: true })
+  notIn?: Array<number>;
+  @Field(() => Int, { nullable: true })
+  lt?: number;
+  @Field(() => Int, { nullable: true })
+  lte?: number;
+  @Field(() => Int, { nullable: true })
+  gt?: number;
+  @Field(() => Int, { nullable: true })
+  gte?: number;
+  @Field(() => NestedIntNullableFilter, { nullable: true })
+  not?: InstanceType<typeof NestedIntNullableFilter>;
+}
+
+@InputType()
+export class NestedIntNullableWithAggregatesFilter {
+  @Field(() => Int, { nullable: true })
+  equals?: number;
+  @Field(() => [Int], { nullable: true })
+  in?: Array<number>;
+  @Field(() => [Int], { nullable: true })
+  notIn?: Array<number>;
+  @Field(() => Int, { nullable: true })
+  lt?: number;
+  @Field(() => Int, { nullable: true })
+  lte?: number;
+  @Field(() => Int, { nullable: true })
+  gt?: number;
+  @Field(() => Int, { nullable: true })
+  gte?: number;
+  @Field(() => NestedIntNullableWithAggregatesFilter, { nullable: true })
+  not?: InstanceType<typeof NestedIntNullableWithAggregatesFilter>;
+  @Field(() => NestedIntNullableFilter, { nullable: true })
+  _count?: InstanceType<typeof NestedIntNullableFilter>;
+  @Field(() => NestedFloatNullableFilter, { nullable: true })
+  _avg?: InstanceType<typeof NestedFloatNullableFilter>;
+  @Field(() => NestedIntNullableFilter, { nullable: true })
+  _sum?: InstanceType<typeof NestedIntNullableFilter>;
+  @Field(() => NestedIntNullableFilter, { nullable: true })
+  _min?: InstanceType<typeof NestedIntNullableFilter>;
+  @Field(() => NestedIntNullableFilter, { nullable: true })
+  _max?: InstanceType<typeof NestedIntNullableFilter>;
 }
 
 @InputType()
@@ -122,6 +248,20 @@ export class NestedStringWithAggregatesFilter {
   _min?: InstanceType<typeof NestedStringFilter>;
   @Field(() => NestedStringFilter, { nullable: true })
   _max?: InstanceType<typeof NestedStringFilter>;
+}
+
+@InputType()
+export class NullableIntFieldUpdateOperationsInput {
+  @Field(() => Int, { nullable: true })
+  set?: number;
+  @Field(() => Int, { nullable: true })
+  increment?: number;
+  @Field(() => Int, { nullable: true })
+  decrement?: number;
+  @Field(() => Int, { nullable: true })
+  multiply?: number;
+  @Field(() => Int, { nullable: true })
+  divide?: number;
 }
 
 @InputType()
@@ -193,6 +333,12 @@ export class StringWithAggregatesFilter {
 }
 
 @ObjectType()
+export class UserinfoAvgAggregate {
+  @Field(() => Float, { nullable: true })
+  ipaddress?: number;
+}
+
+@ObjectType()
 export class UserinfoCountAggregate {
   @Field(() => Int, { nullable: false })
   userid!: number;
@@ -200,6 +346,8 @@ export class UserinfoCountAggregate {
   username!: number;
   @Field(() => Int, { nullable: false })
   email!: number;
+  @Field(() => Int, { nullable: false })
+  ipaddress!: number;
   @Field(() => Int, { nullable: false })
   _all!: number;
 }
@@ -212,8 +360,14 @@ export class UserinfoGroupBy {
   username!: string;
   @Field(() => String, { nullable: false })
   email!: string;
+  @Field(() => Int, { nullable: true })
+  ipaddress?: number;
   @Field(() => UserinfoCountAggregate, { nullable: true })
   _count?: InstanceType<typeof UserinfoCountAggregate>;
+  @Field(() => UserinfoAvgAggregate, { nullable: true })
+  _avg?: InstanceType<typeof UserinfoAvgAggregate>;
+  @Field(() => UserinfoSumAggregate, { nullable: true })
+  _sum?: InstanceType<typeof UserinfoSumAggregate>;
   @Field(() => UserinfoMinAggregate, { nullable: true })
   _min?: InstanceType<typeof UserinfoMinAggregate>;
   @Field(() => UserinfoMaxAggregate, { nullable: true })
@@ -228,6 +382,8 @@ export class UserinfoMaxAggregate {
   username?: string;
   @Field(() => String, { nullable: true })
   email?: string;
+  @Field(() => Int, { nullable: true })
+  ipaddress?: number;
 }
 
 @ObjectType()
@@ -238,6 +394,14 @@ export class UserinfoMinAggregate {
   username?: string;
   @Field(() => String, { nullable: true })
   email?: string;
+  @Field(() => Int, { nullable: true })
+  ipaddress?: number;
+}
+
+@ObjectType()
+export class UserinfoSumAggregate {
+  @Field(() => Int, { nullable: true })
+  ipaddress?: number;
 }
 
 @ArgsType()
@@ -360,6 +524,12 @@ export class userinfoAggregateArgs {
 }
 
 @InputType()
+export class userinfoAvgOrderByAggregateInput {
+  @Field(() => SortOrder, { nullable: true })
+  ipaddress?: keyof typeof SortOrder;
+}
+
+@InputType()
 export class userinfoCountOrderByAggregateInput {
   @Field(() => SortOrder, { nullable: true })
   userid?: keyof typeof SortOrder;
@@ -367,6 +537,8 @@ export class userinfoCountOrderByAggregateInput {
   username?: keyof typeof SortOrder;
   @Field(() => SortOrder, { nullable: true })
   email?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  ipaddress?: keyof typeof SortOrder;
 }
 
 @InputType()
@@ -377,6 +549,8 @@ export class userinfoCreateManyInput {
   username!: string;
   @Field(() => String, { nullable: false })
   email!: string;
+  @Field(() => Int, { nullable: true })
+  ipaddress?: number;
 }
 
 @InputType()
@@ -387,6 +561,8 @@ export class userinfoCreateInput {
   username!: string;
   @Field(() => String, { nullable: false })
   email!: string;
+  @Field(() => Int, { nullable: true })
+  ipaddress?: number;
 }
 
 @ArgsType()
@@ -414,6 +590,8 @@ export class userinfoMaxOrderByAggregateInput {
   username?: keyof typeof SortOrder;
   @Field(() => SortOrder, { nullable: true })
   email?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  ipaddress?: keyof typeof SortOrder;
 }
 
 @InputType()
@@ -424,6 +602,8 @@ export class userinfoMinOrderByAggregateInput {
   username?: keyof typeof SortOrder;
   @Field(() => SortOrder, { nullable: true })
   email?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  ipaddress?: keyof typeof SortOrder;
 }
 
 @InputType()
@@ -434,12 +614,18 @@ export class userinfoOrderByWithAggregationInput {
   username?: keyof typeof SortOrder;
   @Field(() => SortOrder, { nullable: true })
   email?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  ipaddress?: keyof typeof SortOrder;
   @Field(() => userinfoCountOrderByAggregateInput, { nullable: true })
   _count?: InstanceType<typeof userinfoCountOrderByAggregateInput>;
+  @Field(() => userinfoAvgOrderByAggregateInput, { nullable: true })
+  _avg?: InstanceType<typeof userinfoAvgOrderByAggregateInput>;
   @Field(() => userinfoMaxOrderByAggregateInput, { nullable: true })
   _max?: InstanceType<typeof userinfoMaxOrderByAggregateInput>;
   @Field(() => userinfoMinOrderByAggregateInput, { nullable: true })
   _min?: InstanceType<typeof userinfoMinOrderByAggregateInput>;
+  @Field(() => userinfoSumOrderByAggregateInput, { nullable: true })
+  _sum?: InstanceType<typeof userinfoSumOrderByAggregateInput>;
 }
 
 @InputType()
@@ -450,6 +636,8 @@ export class userinfoOrderByWithRelationInput {
   username?: keyof typeof SortOrder;
   @Field(() => SortOrder, { nullable: true })
   email?: keyof typeof SortOrder;
+  @Field(() => SortOrder, { nullable: true })
+  ipaddress?: keyof typeof SortOrder;
 }
 
 @InputType()
@@ -466,6 +654,14 @@ export class userinfoScalarWhereWithAggregatesInput {
   username?: InstanceType<typeof StringWithAggregatesFilter>;
   @Field(() => StringWithAggregatesFilter, { nullable: true })
   email?: InstanceType<typeof StringWithAggregatesFilter>;
+  @Field(() => IntNullableWithAggregatesFilter, { nullable: true })
+  ipaddress?: InstanceType<typeof IntNullableWithAggregatesFilter>;
+}
+
+@InputType()
+export class userinfoSumOrderByAggregateInput {
+  @Field(() => SortOrder, { nullable: true })
+  ipaddress?: keyof typeof SortOrder;
 }
 
 @InputType()
@@ -476,6 +672,8 @@ export class userinfoUncheckedCreateInput {
   username!: string;
   @Field(() => String, { nullable: false })
   email!: string;
+  @Field(() => Int, { nullable: true })
+  ipaddress?: number;
 }
 
 @InputType()
@@ -486,6 +684,8 @@ export class userinfoUncheckedUpdateManyInput {
   username?: InstanceType<typeof StringFieldUpdateOperationsInput>;
   @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
   email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+  ipaddress?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 
 @InputType()
@@ -496,6 +696,8 @@ export class userinfoUncheckedUpdateInput {
   username?: InstanceType<typeof StringFieldUpdateOperationsInput>;
   @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
   email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+  ipaddress?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 
 @InputType()
@@ -506,6 +708,8 @@ export class userinfoUpdateManyMutationInput {
   username?: InstanceType<typeof StringFieldUpdateOperationsInput>;
   @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
   email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+  ipaddress?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 
 @InputType()
@@ -516,6 +720,8 @@ export class userinfoUpdateInput {
   username?: InstanceType<typeof StringFieldUpdateOperationsInput>;
   @Field(() => StringFieldUpdateOperationsInput, { nullable: true })
   email?: InstanceType<typeof StringFieldUpdateOperationsInput>;
+  @Field(() => NullableIntFieldUpdateOperationsInput, { nullable: true })
+  ipaddress?: InstanceType<typeof NullableIntFieldUpdateOperationsInput>;
 }
 
 @InputType()
@@ -538,6 +744,8 @@ export class userinfoWhereInput {
   username?: InstanceType<typeof StringFilter>;
   @Field(() => StringFilter, { nullable: true })
   email?: InstanceType<typeof StringFilter>;
+  @Field(() => IntNullableFilter, { nullable: true })
+  ipaddress?: InstanceType<typeof IntNullableFilter>;
 }
 
 @ObjectType()
@@ -548,4 +756,6 @@ export class userinfo {
   username!: string;
   @Field(() => String, { nullable: false })
   email!: string;
+  @Field(() => Int, { nullable: true })
+  ipaddress!: number | null;
 }

@@ -4,35 +4,67 @@
 
 type Mutation {
   DeleteUserInfo(where: userinfoWhereUniqueInput!): userinfo!
+  UpdateUserInfo(data: userinfoUpdateInput!, where: userinfoWhereUniqueInput!): userinfo!
+}
+
+input NullableIntFieldUpdateOperationsInput {
+  decrement: Int
+  divide: Int
+  increment: Int
+  multiply: Int
+  set: Int
 }
 
 type Query {
   GetUserInfo(where: userinfoWhereUniqueInput!): userinfo!
 }
 
+input StringFieldUpdateOperationsInput {
+  set: String
+}
+
+type UserinfoAvgAggregate {
+  ipaddress: Float
+}
+
 type UserinfoCountAggregate {
   _all: Int!
   email: Int!
+  ipaddress: Int!
   userid: Int!
   username: Int!
 }
 
 type UserinfoMaxAggregate {
   email: String
+  ipaddress: Int
   userid: String
   username: String
 }
 
 type UserinfoMinAggregate {
   email: String
+  ipaddress: Int
   userid: String
   username: String
 }
 
+type UserinfoSumAggregate {
+  ipaddress: Int
+}
+
 type userinfo {
   email: String!
+  ipaddress: Int
   userid: ID!
   username: String!
+}
+
+input userinfoUpdateInput {
+  email: StringFieldUpdateOperationsInput
+  ipaddress: NullableIntFieldUpdateOperationsInput
+  userid: StringFieldUpdateOperationsInput
+  username: StringFieldUpdateOperationsInput
 }
 
 input userinfoWhereUniqueInput {

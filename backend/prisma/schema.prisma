@@ -14,7 +14,8 @@ datasource db {
 }
 
 model userinfo {
-  userid   String @id(map: "pk_userinfo") @db.VarChar(20)
-  username String @db.VarChar(40)
-  email    String @db.VarChar(256)
+  userid    String @id(map: "pk_userinfo") @db.VarChar(20)
+  username  String @db.VarChar(40)
+  email     String @db.VarChar(256)
+  ipaddress Int?
 }
