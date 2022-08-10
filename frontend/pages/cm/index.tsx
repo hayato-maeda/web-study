@@ -30,7 +30,6 @@ const Home: NextPage = () => {
   const { data: userInfo, isFetched } = useGetUserInfoQuery(client, {
     where: { userid: "user01" },
   });
-  console.log("確認", userInfo?.GetUserInfo);
 
   return (
     <Container
