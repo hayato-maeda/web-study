@@ -73,7 +73,6 @@ const Home: NextPage = () => {
   if (isLoading) return <CircularProgress />;
   const rows = apiData?.data as APIDATA;
   //------------API練習-------------------------↑
-  console.log("git練習");
 
   return (
     <Container
