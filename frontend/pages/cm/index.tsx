@@ -20,7 +20,6 @@ const Home: NextPage = () => {
       password: "",
     },
   });
-  const watchUserID = watch("userid", "");
 
   const handleLogin: SubmitHandler<LoginForm> = async (data) => {
     console.log("ログイン処理");

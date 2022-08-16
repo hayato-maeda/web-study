@@ -2,6 +2,9 @@ import { Button, Container, Grid, Typography, TextField } from "@mui/material";
 import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
+import CancelIcon from "@mui/icons-material/Cancel";
+import { IconButton } from "@mui/material";
+import { useRef, useState } from "react";
 
 type LoginForm = {
   userid: string;
@@ -13,10 +16,10 @@ const LoginDummyData = {
   password: "japan",
 };
 
-// const strValR
-
 const Home: NextPage = () => {
   const router = useRouter();
+  const [value, setValue] = useState<string>("");
+  const inputRef = useRef<HTMLElement>(null);
 
   // フォーム管理
   const { control, handleSubmit } = useForm<LoginForm>({
@@ -59,10 +62,27 @@ const Home: NextPage = () => {
                 id={field.name}
                 name={field.name}
                 ref={field.ref}
-                onChange={field.onChange}
-                value={field.value}
+                onChange={(e) => {
+                  console.log("確認1", e.currentTarget.value);
+                  setValue(e.currentTarget.value);
+                  return field.onChange(e.currentTarget.value);
+                }}
+                value={value}
                 error={!!fieldState.error}
                 helperText={fieldState.error?.message}
+                inputRef={inputRef}
+                InputProps={{
+                  endAdornment: value !== "" && (
+                    <IconButton
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setValue("");
+                      }}
+                    >
+                      <CancelIcon fontSize="small" />
+                    </IconButton>
+                  ),
+                }}
               />
             )}
           />

@@ -13,7 +13,6 @@ import { CmModule } from './cm/cm.module';
       debug: true,
       playground: true,
       autoSchemaFile: join(process.cwd(), 'schema.graphql'),
-      sortSchema: true,
     }),
     CmModule,
   ],
