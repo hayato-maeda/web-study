@@ -58,7 +58,7 @@ const Home: NextPage = () => {
     where: { userid: "user01" },
   });
 
-  //------------API練習-------------------------
+  //------------API練習-------------------------↓
   const config: AxiosRequestConfig = {
     headers: { "X-API-KEY": "1RaI2Vm1p716f4yvXCoBCYVyHVqZJZ82aL8OKyFu" },
   };
@@ -70,12 +70,9 @@ const Home: NextPage = () => {
     )
   );
 
-  if (isLoading) {
-    return <CircularProgress />;
-  }
-
-  const data2 = apiData?.data as APIDATA;
-  console.log(data2);
+  if (isLoading) return <CircularProgress />;
+  const rows = apiData?.data as APIDATA;
+  //------------API練習-------------------------↑
 
   return (
     <Container
@@ -102,7 +99,7 @@ const Home: NextPage = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data2.result.map((item, index) => (
+            {rows.result.map((item, index) => (
               <TableRow
                 key={index}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
