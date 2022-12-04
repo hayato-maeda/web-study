@@ -63,7 +63,6 @@ const Home: NextPage = () => {
                 name={field.name}
                 ref={field.ref}
                 onChange={(e) => {
-                  console.log("確認1", e.currentTarget.value);
                   setValue(e.currentTarget.value);
                   return field.onChange(e.currentTarget.value);
                 }}

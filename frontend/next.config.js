@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
+  images: {
+    domains: ["scontent-nrt1-1.cdninstagram.com"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
